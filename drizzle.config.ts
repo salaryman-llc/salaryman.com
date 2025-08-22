@@ -4,9 +4,10 @@ import { env } from "~/env";
 
 export default {
   schema: "./src/server/db/schema.ts",
-  dialect: "sqlite",
+  dialect: "turso",
   dbCredentials: {
     url: env.DATABASE_URL,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    authToken: env.DATABASE_TOKEN,
   },
-  tablesFilter: ["salaryman.com_*"],
 } satisfies Config;
