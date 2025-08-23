@@ -20,6 +20,7 @@ import {
 import { StackedLayout } from "./catalyst/stacked-layout";
 import Footer from "./footer";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const navItems = [
   { label: "Home", url: "/" },
@@ -34,15 +35,21 @@ function BuildNavBarItem(label: string, url: string, pathname: string) {
   const isCurrent: boolean = pathname === url;
   if (url === "/") {
     return (
-      <>
+      <div key={label}>
         <NavbarItem key={label} href={url} current={isCurrent}>
-          <Avatar className="size-10" src="/salaryman-logo.png" />
+          <Image
+            width={100}
+            height={100}
+            src="/salaryman-logo.png"
+            alt="Salaryman LLC"
+            className="size-10 rounded-full *:rounded-full"
+          />
           <NavbarLabel>
             <Heading>Salaryman LLC</Heading>
           </NavbarLabel>
         </NavbarItem>
         <NavbarDivider className="max-lg:hidden" />
-      </>
+      </div>
     );
   }
 
@@ -70,18 +77,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
       sidebar={
         <Sidebar>
           <SidebarHeader>
-            <Avatar className="size-10" src="/salaryman-logo.png" />
-            <SidebarLabel>
-              <Heading>Salaryman LLC</Heading>
-            </SidebarLabel>
+            <SidebarItem href="/" current={pathname === "/"}>
+              <Image
+                width={100}
+                height={100}
+                src="/salaryman-logo.png"
+                alt="Salaryman LLC"
+                className="size-10 rounded-full *:rounded-full"
+              />
+              <SidebarLabel>
+                <Heading>Salaryman LLC</Heading>
+              </SidebarLabel>
+            </SidebarItem>
           </SidebarHeader>
           <SidebarBody>
             <SidebarSection>
-              {navItems.map(({ label, url }) => (
-                <SidebarItem key={label} href={url} current={pathname === url}>
-                  {label}
-                </SidebarItem>
-              ))}
+              {navItems
+                .filter(({ url }) => url !== "/")
+                .map(({ label, url }) => (
+                  <SidebarItem
+                    key={label}
+                    href={url}
+                    current={pathname === url}
+                  >
+                    {label}
+                  </SidebarItem>
+                ))}
             </SidebarSection>
           </SidebarBody>
         </Sidebar>
