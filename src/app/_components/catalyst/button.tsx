@@ -57,6 +57,16 @@ const styles = {
     "[--btn-icon:var(--color-zinc-500)] data-active:[--btn-icon:var(--color-zinc-700)] data-hover:[--btn-icon:var(--color-zinc-700)] dark:[--btn-icon:var(--color-zinc-500)] dark:data-active:[--btn-icon:var(--color-zinc-400)] dark:data-hover:[--btn-icon:var(--color-zinc-400)]",
   ],
   colors: {
+    "salaryman/orange": [
+      "text-white [--btn-bg:var(--color-orange-600)] [--btn-border:var(--color-orange-650)]/90 [--btn-hover-overlay:var(--color-white)]/10",
+      "dark:text-white dark:[--btn-bg:var(--color-orange-400)] dark:[--btn-hover-overlay:var(--color-white)]/5",
+      "[--btn-icon:var(--color-white)] data-active:[--btn-icon:var(--color-white)] data-hover:[--btn-icon:var(--color-white)]",
+    ],
+    "salaryman/blue": [
+      "text-white [--btn-bg:var(--color-blue-600)] [--btn-border:var(--color-blue-650)]/90 [--btn-hover-overlay:var(--color-white)]/10",
+      "dark:text-white dark:[--btn-bg:var(--color-blue-400)] dark:[--btn-hover-overlay:var(--color-white)]/5",
+      "[--btn-icon:var(--color-white)] data-active:[--btn-icon:var(--color-white)] data-hover:[--btn-icon:var(--color-white)]",
+    ],
     "dark/zinc": [
       "text-white [--btn-bg:var(--color-zinc-900)] [--btn-border:var(--color-zinc-950)]/90 [--btn-hover-overlay:var(--color-white)]/10",
       "dark:text-white dark:[--btn-bg:var(--color-zinc-600)] dark:[--btn-hover-overlay:var(--color-white)]/5",

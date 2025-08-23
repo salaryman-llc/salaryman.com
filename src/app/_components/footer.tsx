@@ -2,9 +2,9 @@ import { Link } from "./catalyst/link";
 
 const navItems: { label: string; url: string }[] = [
   { label: "Home", url: "/" },
+  { label: "Games", url: "/games" },
   { label: "Products", url: "/products" },
   { label: "Services", url: "/services" },
-  { label: "Projects", url: "/projects" },
   { label: "Blog", url: "/blog" },
   { label: "Contact", url: "/contact" },
 ];
