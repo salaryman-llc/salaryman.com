@@ -18,7 +18,7 @@ export default async function RootLayout({
       <head>
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </head>
-      <body className="lg:bg-white dark:lg:bg-zinc-900">
+      <body className="bg-white dark:bg-zinc-900">
         <TRPCReactProvider>
           <Layout>{children}</Layout>
         </TRPCReactProvider>
