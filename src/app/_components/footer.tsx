@@ -1,13 +1,5 @@
 import { Link } from "./catalyst/link";
-
-const navItems: { label: string; url: string }[] = [
-  { label: "Home", url: "/" },
-  { label: "Games", url: "/games" },
-  { label: "Products", url: "/products" },
-  { label: "Services", url: "/services" },
-  { label: "Blog", url: "/blog" },
-  { label: "Contact", url: "/contact" },
-];
+import { navItems } from "../constants";
 
 export default function Footer() {
   return (

@@ -20,17 +20,23 @@ import { StackedLayout } from "./catalyst/stacked-layout";
 import Footer from "./footer";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { navItems, type NavItem } from "../constants";
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownDivider,
+  DropdownItem,
+  DropdownLabel,
+  DropdownMenu,
+} from "./catalyst/dropdown";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-const navItems = [
-  { label: "Home", url: "/" },
-  { label: "Games", url: "/games" },
-  { label: "Products", url: "/products" },
-  { label: "Services", url: "/services" },
-  { label: "Blog", url: "/blog" },
-  { label: "Contact", url: "/contact" },
-];
-
-function BuildNavBarItem(label: string, url: string, pathname: string) {
+function BuildNavBarItem(
+  label: string,
+  url: string,
+  pathname: string,
+  subNav?: NavItem[],
+) {
   const isCurrent: boolean = pathname === url;
   if (url === "/") {
     return (
@@ -52,6 +58,30 @@ function BuildNavBarItem(label: string, url: string, pathname: string) {
     );
   }
 
+  if (subNav) {
+    const isRootCurrent: boolean = pathname.startsWith(url);
+
+    return (
+      <Dropdown key={label}>
+        <DropdownButton
+          as={NavbarItem}
+          className="max-lg:hidden"
+          current={isRootCurrent}
+        >
+          <NavbarLabel>{label}</NavbarLabel>
+          <ChevronDownIcon />
+        </DropdownButton>
+        <DropdownMenu className="min-w-80 lg:min-w-64" anchor="bottom start">
+          {subNav.map(({ label, url }) => (
+            <DropdownItem key={label} href={url}>
+              <DropdownLabel>{label}</DropdownLabel>
+            </DropdownItem>
+          ))}
+        </DropdownMenu>
+      </Dropdown>
+    );
+  }
+
   return (
     <NavbarItem key={label} href={url} current={isCurrent}>
       {label}
@@ -67,8 +97,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       navbar={
         <Navbar>
           <NavbarSection className="max-lg:hidden">
-            {navItems.map(({ label, url }) =>
-              BuildNavBarItem(label, url, pathname),
+            {navItems.map(({ label, url, subNav }) =>
+              BuildNavBarItem(label, url, pathname, subNav),
             )}
           </NavbarSection>
         </Navbar>
