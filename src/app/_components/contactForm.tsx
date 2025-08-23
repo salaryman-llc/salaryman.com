@@ -97,7 +97,14 @@ export default function ContactForm() {
             sitekey={env.NEXT_PUBLIC_HCAPTCHA_SITEKEY}
             onVerify={(token) => handleVerificationSuccess(token)}
           />
-          <input type="hidden" name="token" value={token} onChange={() => {;}} />
+          <input
+            type="hidden"
+            name="token"
+            value={token}
+            onChange={() => {
+              return;
+            }}
+          />
           <Field>
             <Button
               type="submit"

@@ -3,7 +3,9 @@ import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
 import nodemailer from 'nodemailer';
 import { env } from '~/env';
 import { verify } from 'hcaptcha';
-import posthog from 'posthog-js';
+import PostHogClient from '../../../app/posthog';
+
+const posthog = PostHogClient();
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -33,7 +35,13 @@ export const contactRouter = createTRPCRouter({
         env.NEXT_PUBLIC_HCAPTCHA_SITEKEY
       );
       if (data.success === true) {
-        posthog.capture('hcaptcha-verification', { succeeded: true });
+        posthog.capture({
+          distinctId: 'server',
+          event: 'hcaptcha-verification',
+          properties: {
+            succeeded: true,
+          },
+        });
         const info = await transporter.sendMail({
           from: `"${input.firstName} ${input.lastName}" <${input.email}>`,
           to: env.CONTACT_EMAIL,
@@ -41,15 +49,25 @@ export const contactRouter = createTRPCRouter({
           text: `Name: ${input.firstName} ${input.lastName}\nCompany: ${input.company}\nEmail: ${input.email}\n\n${input.message}`,
         });
 
-        posthog.capture('contact-email', {
-          accepted: info.accepted,
-          rejected: info.rejected,
-          response: info.response,
-          messageId: info.messageId,
-          envelope: info.envelope,
+        posthog.capture({
+          distinctId: 'server',
+          event: 'contact-email',
+          properties: {
+            accepted: info.accepted,
+            rejected: info.rejected,
+            response: info.response,
+            messageId: info.messageId,
+            envelope: info.envelope,
+          },
         });
       } else {
-        posthog.capture('hcaptcha-verification', { succeeded: false });
+        posthog.capture({
+          distinctId: 'server',
+          event: 'hcaptcha-verification',
+          properties: {
+            succeeded: false,
+          },
+        });
       }
     }),
 });
