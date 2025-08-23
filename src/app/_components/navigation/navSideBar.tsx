@@ -1,6 +1,6 @@
 "use client";
 
-import { navItems } from "~/app/navigationConstants";
+import { navItems, type NavItem } from "~/app/navigationConstants";
 import { Heading } from "../catalyst/heading";
 import {
   Sidebar,
@@ -9,9 +9,42 @@ import {
   SidebarLabel,
   SidebarBody,
   SidebarSection,
+  SidebarHeading,
+  SidebarDivider,
 } from "../catalyst/sidebar";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+
+function BuildSideBarItem(
+  label: string,
+  url: string,
+  pathname: string,
+  subNav?: NavItem[],
+) {
+  const isCurrent: boolean = pathname === url;
+
+  if (subNav && subNav.length > 0) {
+    return (
+      <>
+        <SidebarSection>
+          <SidebarHeading>{label}</SidebarHeading>
+          {subNav.map(({ label, url }) => (
+            <SidebarItem href={url} key={label}>
+              <SidebarLabel>{label}</SidebarLabel>
+            </SidebarItem>
+          ))}
+        </SidebarSection>
+        <SidebarDivider />
+      </>
+    );
+  }
+
+  return (
+    <SidebarItem key={label} href={url} current={isCurrent}>
+      {label}
+    </SidebarItem>
+  );
+}
 
 export function NavSideBar() {
   const pathname = usePathname();
@@ -36,11 +69,9 @@ export function NavSideBar() {
         <SidebarSection>
           {navItems
             .filter(({ url }) => url !== "/")
-            .map(({ label, url }) => (
-              <SidebarItem key={label} href={url} current={pathname === url}>
-                {label}
-              </SidebarItem>
-            ))}
+            .map(({ label, url, subNav }) =>
+              BuildSideBarItem(label, url, pathname, subNav),
+            )}
         </SidebarSection>
       </SidebarBody>
     </Sidebar>

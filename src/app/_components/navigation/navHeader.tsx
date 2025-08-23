@@ -47,7 +47,7 @@ function BuildNavBarItem(
     );
   }
 
-  if (subNav) {
+  if (subNav && subNav.length > 0) {
     const isRootCurrent: boolean = pathname.startsWith(url);
 
     return (
