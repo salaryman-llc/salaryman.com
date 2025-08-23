@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { type Metadata } from "next";
 import { TRPCReactProvider } from "~/trpc/react";
 import { Layout } from "./_components/layout";
+import { PostHogProvider } from "./providers";
 
 export const metadata: Metadata = {
   title: "Salaryman",
@@ -19,9 +20,11 @@ export default async function RootLayout({
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </head>
       <body className="bg-white dark:bg-zinc-900">
-        <TRPCReactProvider>
-          <Layout>{children}</Layout>
-        </TRPCReactProvider>
+        <PostHogProvider>
+          <TRPCReactProvider>
+            <Layout>{children}</Layout>
+          </TRPCReactProvider>
+        </PostHogProvider>
       </body>
     </html>
   );

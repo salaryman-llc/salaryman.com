@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar } from "./catalyst/avatar";
 import { Heading } from "./catalyst/heading";
 import {
   Navbar,
