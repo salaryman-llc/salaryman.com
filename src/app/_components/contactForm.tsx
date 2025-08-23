@@ -11,19 +11,29 @@ import {
 import { Input } from '../_components/catalyst/input';
 import { Textarea } from '../_components/catalyst/textarea';
 import { Button } from '../_components/catalyst/button';
-import { type FormEvent, useState } from 'react';
+import { type FormEvent, useRef, useState } from 'react';
 import { api } from '~/trpc/react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { env } from '~/env';
-import React from 'react';
+
+type SubmitionData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  company?: string;
+  message: string;
+};
 
 export default function ContactForm() {
-  const [token, setToken] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [succeeded, setSuccess] = useState<boolean>(false);
-  const [disableButton, setDisableButton] = useState<boolean>(true);
-  const formRef = React.useRef<HTMLFormElement>(null);
+  const [disableButton, setDisableButton] = useState<boolean>(false);
+  const [submitionData, setSubmitionData] = useState<SubmitionData | undefined>(
+    undefined
+  );
+  const formRef = useRef<HTMLFormElement>(null);
+  const captchaRef = useRef<HCaptcha>(null);
 
   const sendInquiry = api.contact.sendInquiry.useMutation({
     onSuccess: async () => {
@@ -46,20 +56,30 @@ export default function ContactForm() {
     setError(null);
 
     const formData = new FormData(event.currentTarget);
-
-    sendInquiry.mutate({
+    setSubmitionData({
       firstName: formData.get('firstName')!.valueOf() as string,
       lastName: formData.get('lastName')!.valueOf() as string,
       email: formData.get('email')!.valueOf() as string,
       company: formData.get('company')?.valueOf() as string,
       message: formData.get('message')!.valueOf() as string,
-      token: formData.get('token')!.valueOf() as string,
     });
+
+    captchaRef.current?.execute();
   }
 
   function handleVerificationSuccess(token: string) {
-    setToken(token);
-    setDisableButton(false);
+    if (!submitionData) {
+      return;
+    }
+
+    sendInquiry.mutate({
+      firstName: submitionData.firstName,
+      lastName: submitionData.lastName,
+      email: submitionData.email,
+      company: submitionData.company,
+      message: submitionData.message,
+      token: token,
+    });
   }
 
   return (
@@ -94,22 +114,17 @@ export default function ContactForm() {
             <Description>Let us know how we can help!</Description>
           </Field>
           <HCaptcha
+            size="invisible"
+            ref={captchaRef}
             sitekey={env.NEXT_PUBLIC_HCAPTCHA_SITEKEY}
             onVerify={(token) => handleVerificationSuccess(token)}
-          />
-          <input
-            type="hidden"
-            name="token"
-            value={token}
-            onChange={() => {
-              return;
-            }}
           />
           <Field>
             <Button
               type="submit"
               className={
-                'w-full' + (!disableButton ? ' hover:cursor-pointer' : '')
+                'h-captcha w-full' +
+                (!disableButton ? ' hover:cursor-pointer' : '')
               }
               color="salaryman/blue"
               disabled={disableButton}
