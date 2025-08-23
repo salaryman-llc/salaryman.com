@@ -1,3 +1,5 @@
+import GameList from "../_components/gameList";
+
 export default function Games() {
-  return <></>;
+  return <GameList />;
 }
