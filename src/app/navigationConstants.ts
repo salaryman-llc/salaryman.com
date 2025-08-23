@@ -11,7 +11,7 @@ const gamesNavItems: NavItem[] = [
 
 const productsNavItems: NavItem[] = [
   { label: "All Products", url: "/products" },
-  { label: "Salaryman AI Translations", url: "/products/translations" },
+  { label: "AI Translations", url: "/products/translations" },
 ];
 
 const servicesNavItems: NavItem[] = [

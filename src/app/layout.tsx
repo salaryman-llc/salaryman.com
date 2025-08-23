@@ -2,8 +2,11 @@ import "~/styles/globals.css";
 
 import { type Metadata } from "next";
 import { TRPCReactProvider } from "~/trpc/react";
-import { Layout } from "./_components/layout";
 import { PostHogProvider } from "./providers";
+import { StackedLayout } from "./_components/catalyst/stacked-layout";
+import { NavHeader } from "./_components/navigation/navHeader";
+import NavFooter from "./_components/navigation/navFooter";
+import { NavSideBar } from "./_components/navigation/navSideBar";
 
 export const metadata: Metadata = {
   title: "Salaryman",
@@ -22,7 +25,13 @@ export default async function RootLayout({
       <body className="bg-white dark:bg-zinc-900">
         <PostHogProvider>
           <TRPCReactProvider>
-            <Layout>{children}</Layout>
+            <StackedLayout
+              navbar={<NavHeader />}
+              sidebar={<NavSideBar />}
+              footer={<NavFooter />}
+            >
+              {children}
+            </StackedLayout>
           </TRPCReactProvider>
         </PostHogProvider>
       </body>

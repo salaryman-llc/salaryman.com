@@ -1,7 +1,7 @@
-import { Link } from "./catalyst/link";
-import { navItems } from "../navigationConstants";
+import { Link } from "../catalyst/link";
+import { navItems } from "../../navigationConstants";
 
-export default function Footer() {
+export default function NavFooter() {
   return (
     <footer>
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-6 sm:py-6 lg:px-6">
