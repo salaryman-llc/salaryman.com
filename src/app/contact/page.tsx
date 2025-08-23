@@ -1,6 +1,8 @@
-import { EnvelopeIcon, GlobeAsiaAustraliaIcon } from '@heroicons/react/24/outline'
+import {
+  EnvelopeIcon,
+  GlobeAsiaAustraliaIcon,
+} from '@heroicons/react/24/outline';
 import ContactForm from '../_components/contactForm';
-
 
 export default function Contact() {
   return (
@@ -12,27 +14,35 @@ export default function Contact() {
               Get in touch
             </h2>
             <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-400">
-              For general inquiries feel free to reach out by email or the contact form. We will respond to inqueries within 48 hours.
+              For general inquiries feel free to reach out by email or the
+              contact form. We will respond to inqueries within 48 hours.
             </p>
             <dl className="mt-10 space-y-4 text-base/7 text-gray-600 dark:text-gray-300">
               <div className="flex gap-x-4">
                 <dt className="flex-none">
                   <span className="sr-only">Telephone</span>
-                  <GlobeAsiaAustraliaIcon aria-hidden="true" className="h-7 w-6 text-gray-400" />
+                  <GlobeAsiaAustraliaIcon
+                    aria-hidden="true"
+                    className="h-7 w-6 text-gray-400"
+                  />
                 </dt>
                 <dd>
-                  <p>
-                    Japan Based (JST)
-                  </p>
+                  <p>Japan Based (JST)</p>
                 </dd>
               </div>
               <div className="flex gap-x-4">
                 <dt className="flex-none">
                   <span className="sr-only">Email</span>
-                  <EnvelopeIcon aria-hidden="true" className="h-7 w-6 text-gray-400" />
+                  <EnvelopeIcon
+                    aria-hidden="true"
+                    className="h-7 w-6 text-gray-400"
+                  />
                 </dt>
                 <dd>
-                  <a href="mailto:contact@salaryman.com" className="hover:text-gray-900 dark:hover:text-white">
+                  <a
+                    href="mailto:contact@salaryman.com"
+                    className="hover:text-gray-900 dark:hover:text-white"
+                  >
                     contact@salaryman.com
                   </a>
                 </dd>
@@ -43,5 +53,5 @@ export default function Contact() {
         <ContactForm />
       </div>
     </div>
-  )
+  );
 }

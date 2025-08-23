@@ -3,33 +3,33 @@ import {
   PuzzlePieceIcon,
   CommandLineIcon,
   EnvelopeIcon,
-} from "@heroicons/react/24/outline";
-import { Button } from "./catalyst/button";
-import { Link } from "./catalyst/link";
+} from '@heroicons/react/24/outline';
+import { Button } from './catalyst/button';
+import { Link } from './catalyst/link';
 
 const features = [
   {
-    name: "Games",
+    name: 'Games',
     description:
       "We make indie games that focus on our teams interests and passions. No genre or asthetic is off limits. Our goal is to create experiences that are approachable, thoughtful, and fun. Take a look at our projects and see what we're working on.",
-    linkLabel: "Games",
-    href: "/games",
+    linkLabel: 'Games',
+    href: '/games',
     icon: PuzzlePieceIcon,
   },
   {
-    name: "Game Systems | Engine Plugins",
+    name: 'Game Systems | Engine Plugins',
     description:
       "Alongside our games we build simple, reliable systems and plugins for game engines. We focus on tools that save time, smooth out workflows, and make development a little less stressful. Whether you're an indie dev or a small team, our plugins are designed to help you ship faster.",
-    linkLabel: "Products",
-    href: "/products",
+    linkLabel: 'Products',
+    href: '/products',
     icon: CodeBracketSquareIcon,
   },
   {
-    name: "Software Engineering",
+    name: 'Software Engineering',
     description:
       "We help bring ideas to life through custom software. We work with small teams and businesses to build tools that fit your exact needs. If you've got a problem that needs a creative solution, we'd love to help.",
-    linkLabel: "Services",
-    href: "/services",
+    linkLabel: 'Services',
+    href: '/services',
     icon: CommandLineIcon,
   },
 ];
@@ -40,11 +40,11 @@ export default function Hero() {
       <div className="mx-auto flex max-w-7xl flex-col items-center px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center lg:mx-0">
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
-            {"Your Very Own Salaryman"}
+            {'Your Very Own Salaryman'}
           </h2>
           <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
             {
-              "We are an indie game developer that provides software engineering expertise for indie game studios and businesses. "
+              'We are an indie game developer that provides software engineering expertise for indie game studios and businesses. '
             }
           </p>
           <div className="mt-6">

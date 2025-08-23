@@ -1,10 +1,12 @@
-import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import nodemailer from 'nodemailer'
-import { env } from "~/env";
+import { z } from 'zod';
+import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
+import nodemailer from 'nodemailer';
+import { env } from '~/env';
+import { verify } from 'hcaptcha';
+import posthog from 'posthog-js';
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: 'gmail',
   auth: {
     user: env.CONTACT_EMAIL,
     pass: env.GOOGLE_APP_PASSWORD,
@@ -13,19 +15,41 @@ const transporter = nodemailer.createTransport({
 
 export const contactRouter = createTRPCRouter({
   sendInquiry: publicProcedure
-    .input(z.object({
-      firstName: z.string(),
-      lastName: z.string(),
-      email: z.string(),
-      company: z.string().optional(),
-      message: z.string()
-    }))
+    .input(
+      z.object({
+        firstName: z.string(),
+        lastName: z.string(),
+        email: z.string(),
+        company: z.string().optional(),
+        message: z.string(),
+        token: z.string(),
+      })
+    )
     .mutation(async ({ input }) => {
-      const info = await transporter.sendMail({
-        from: `"${input.firstName} ${input.lastName}" <${input.email}>`,
-        to: env.CONTACT_EMAIL,
-        subject: "Salaryman Website Inquiry",
-        text: `Name: ${input.firstName} ${input.lastName}\nCompany: ${input.company}\nEmail: ${input.email}\n\n${input.message}`,
-      });
+      const data = await verify(
+        env.HCAPTCHA_SECRET,
+        input.token,
+        undefined,
+        env.NEXT_PUBLIC_HCAPTCHA_SITEKEY
+      );
+      if (data.success === true) {
+        posthog.capture('hcaptcha-verification', { succeeded: true });
+        const info = await transporter.sendMail({
+          from: `"${input.firstName} ${input.lastName}" <${input.email}>`,
+          to: env.CONTACT_EMAIL,
+          subject: 'Salaryman Website Inquiry',
+          text: `Name: ${input.firstName} ${input.lastName}\nCompany: ${input.company}\nEmail: ${input.email}\n\n${input.message}`,
+        });
+
+        posthog.capture('contact-email', {
+          accepted: info.accepted,
+          rejected: info.rejected,
+          response: info.response,
+          messageId: info.messageId,
+          envelope: info.envelope,
+        });
+      } else {
+        posthog.capture('hcaptcha-verification', { succeeded: false });
+      }
     }),
 });

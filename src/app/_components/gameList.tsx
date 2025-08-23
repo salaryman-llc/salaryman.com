@@ -1,5 +1,4 @@
-import { allGames } from "../games/gameDetails";
-
+import { allGames } from '../games/gameDetails';
 
 export default function GameList() {
   return (
@@ -61,15 +60,13 @@ export default function GameList() {
 
               <div className="relative mt-8 flex items-center gap-x-4 justify-self-end">
                 {game.credits?.map(({ name, title }) => (
-                    <div className="text-sm/6" key={name}>
-                      <p className="font-semibold text-gray-900 dark:text-white">
-                        {name}
-                      </p>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        {title}
-                      </p>
-                    </div>
-                  ))}
+                  <div className="text-sm/6" key={name}>
+                    <p className="font-semibold text-gray-900 dark:text-white">
+                      {name}
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-400">{title}</p>
+                  </div>
+                ))}
               </div>
             </article>
           ))}

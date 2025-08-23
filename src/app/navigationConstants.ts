@@ -5,13 +5,13 @@ export type NavItem = {
 };
 
 const gamesNavItems: NavItem[] = [
-  { label: "All Games", url: "/games" },
-  { label: "Backcountry", url: "/games/backcountry" },
+  { label: 'All Games', url: '/games' },
+  { label: 'Backcountry', url: '/games/backcountry' },
 ];
 
 const productsNavItems: NavItem[] = [
-  { label: "All Products", url: "/products" },
-  { label: "AI Translations", url: "/products/translations" },
+  { label: 'All Products', url: '/products' },
+  { label: 'AI Translations', url: '/products/translations' },
 ];
 
 const servicesNavItems: NavItem[] = [
@@ -23,10 +23,10 @@ const servicesNavItems: NavItem[] = [
 ];
 
 export const navItems: NavItem[] = [
-  { label: "Home", url: "/" },
-  { label: "Games", url: "/games", subNav: gamesNavItems },
-  { label: "Products", url: "/products", subNav: productsNavItems },
-  { label: "Services", url: "/services", subNav: servicesNavItems },
+  { label: 'Home', url: '/' },
+  { label: 'Games', url: '/games', subNav: gamesNavItems },
+  { label: 'Products', url: '/products', subNav: productsNavItems },
+  { label: 'Services', url: '/services', subNav: servicesNavItems },
   // { label: "Blog", url: "/blog" },
-  { label: "Contact", url: "/contact" },
+  { label: 'Contact', url: '/contact' },
 ];

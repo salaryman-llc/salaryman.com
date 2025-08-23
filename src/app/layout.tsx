@@ -1,17 +1,17 @@
-import "~/styles/globals.css";
+import '~/styles/globals.css';
 
-import { type Metadata } from "next";
-import { TRPCReactProvider } from "~/trpc/react";
-import { PostHogProvider } from "./providers";
-import { StackedLayout } from "./_components/catalyst/stacked-layout";
-import { NavHeader } from "./_components/navigation/navHeader";
-import NavFooter from "./_components/navigation/navFooter";
-import { NavSideBar } from "./_components/navigation/navSideBar";
+import { type Metadata } from 'next';
+import { TRPCReactProvider } from '~/trpc/react';
+import { PostHogProvider } from './providers';
+import { StackedLayout } from './_components/catalyst/stacked-layout';
+import { NavHeader } from './_components/navigation/navHeader';
+import NavFooter from './_components/navigation/navFooter';
+import { NavSideBar } from './_components/navigation/navSideBar';
 
 export const metadata: Metadata = {
-  title: "Salaryman",
-  description: "A company of overworked and underappreciated salarymen.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  title: 'Salaryman',
+  description: 'A company of overworked and underappreciated salarymen.',
+  icons: [{ rel: 'icon', url: '/favicon.ico' }],
 };
 
 export default async function RootLayout({

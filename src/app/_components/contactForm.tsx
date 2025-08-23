@@ -1,46 +1,73 @@
-"use client";
+'use client';
 
-import { Description, ErrorMessage, Field, FieldGroup, Fieldset, Label } from '../_components/catalyst/fieldset'
-import { Input } from '../_components/catalyst/input'
-import { Textarea } from '../_components/catalyst/textarea'
-import { Button } from '../_components/catalyst/button'
-import { type FormEvent, useState } from 'react'
+import {
+  Description,
+  ErrorMessage,
+  Field,
+  FieldGroup,
+  Fieldset,
+  Label,
+} from '../_components/catalyst/fieldset';
+import { Input } from '../_components/catalyst/input';
+import { Textarea } from '../_components/catalyst/textarea';
+import { Button } from '../_components/catalyst/button';
+import { type FormEvent, useState } from 'react';
 import { api } from '~/trpc/react';
-
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { env } from '~/env';
+import React from 'react';
 
 export default function ContactForm() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
-  const [succeeded, setSuccess] = useState<boolean>(false)
+  const [token, setToken] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [succeeded, setSuccess] = useState<boolean>(false);
+  const [disableButton, setDisableButton] = useState<boolean>(true);
+  const formRef = React.useRef<HTMLFormElement>(null);
+
   const sendInquiry = api.contact.sendInquiry.useMutation({
     onSuccess: async () => {
-      setSuccess(true)
-      setIsLoading(false)
+      setIsLoading(false);
+      setSuccess(true);
+      setDisableButton(false);
+      formRef.current?.reset();
     },
     onError: async (error) => {
-      console.error(error)
-      setError(error.message)
-    }
-  })
+      setIsLoading(false);
+      setError(error.message);
+      setDisableButton(false);
+    },
+  });
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setIsLoading(true)
-    setError(null)
+    event.preventDefault();
+    setDisableButton(true);
+    setIsLoading(true);
+    setError(null);
 
-    const formData = new FormData(event.currentTarget)
+    const formData = new FormData(event.currentTarget);
 
     sendInquiry.mutate({
-      firstName: formData.get('firstName')!.toString(),
-      lastName: formData.get('lastName')!.toString(),
-      email: formData.get('email')!.toString(),
-      company: formData.get('company')?.toString(),
-      message: formData.get('message')!.toString(),
-    })
+      firstName: formData.get('firstName')!.valueOf() as string,
+      lastName: formData.get('lastName')!.valueOf() as string,
+      email: formData.get('email')!.valueOf() as string,
+      company: formData.get('company')?.valueOf() as string,
+      message: formData.get('message')!.valueOf() as string,
+      token: formData.get('token')!.valueOf() as string,
+    });
+  }
+
+  function handleVerificationSuccess(token: string) {
+    setToken(token);
+    setDisableButton(false);
   }
 
   return (
-    <form onSubmit={onSubmit} className="px-6 pt-20 pb-24 sm:pb-32 lg:px-8 lg:py-48">
+    <form
+      onSubmit={onSubmit}
+      ref={formRef}
+      className="px-6 pt-20 pb-24 sm:pb-32 lg:px-8 lg:py-48"
+    >
       <Fieldset>
         <FieldGroup>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-4">
@@ -55,7 +82,7 @@ export default function ContactForm() {
           </div>
           <Field>
             <Label>Email</Label>
-            <Input type='email' name="email" required />
+            <Input type="email" name="email" required />
           </Field>
           <Field>
             <Label>Company (Optional)</Label>
@@ -63,16 +90,34 @@ export default function ContactForm() {
           </Field>
           <Field>
             <Label>Message</Label>
-            <Textarea name="message" />
+            <Textarea name="message" required />
             <Description>Let us know how we can help!</Description>
           </Field>
+          <HCaptcha
+            sitekey={env.NEXT_PUBLIC_HCAPTCHA_SITEKEY}
+            onVerify={(token) => handleVerificationSuccess(token)}
+          />
+          <input type="hidden" name="token" value={token} onChange={() => {;}} />
           <Field>
-            <Button type='submit' className='w-full hover:cursor-pointer' color='salaryman/blue' disabled={isLoading || succeeded}>
-              {isLoading ? 'Sending...' : succeeded ? 'Sent!' : 'Send'}
+            <Button
+              type="submit"
+              className={
+                'w-full' + (!disableButton ? ' hover:cursor-pointer' : '')
+              }
+              color="salaryman/blue"
+              disabled={disableButton}
+            >
+              {isLoading ? 'Sending...' : 'Send'}
             </Button>
+            <Description className="mt-2 text-center">
+              {succeeded && "Inquiry sent! We'll get back to you shortly!"}
+            </Description>
+            <ErrorMessage className="mt-2 text-center">
+              {error && `Error: ${error}`}
+            </ErrorMessage>
           </Field>
         </FieldGroup>
       </Fieldset>
     </form>
-  )
+  );
 }

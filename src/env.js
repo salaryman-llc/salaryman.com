@@ -1,5 +1,5 @@
-import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { createEnv } from '@t3-oss/env-nextjs';
+import { z } from 'zod';
 
 export const env = createEnv({
   /**
@@ -10,12 +10,12 @@ export const env = createEnv({
     DATABASE_URL: z.string().url(),
     DATABASE_TOKEN: z.string(),
     GOOGLE_APP_PASSWORD: z.string(),
+    HCAPTCHA_VERIFY_URL: z.string().url(),
     HCAPTCHA_SECRET: z.string(),
-    HCAPTCHA_SITEKEY: z.string(),
     CONTACT_EMAIL: z.string().email(),
     NODE_ENV: z
-      .enum(["development", "test", "production"])
-      .default("development"),
+      .enum(['development', 'test', 'production'])
+      .default('development'),
   },
 
   /**
@@ -26,7 +26,7 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_POSTHOG_KEY: z.string(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string(),
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_HCAPTCHA_SITEKEY: z.string(),
   },
 
   /**
@@ -40,8 +40,9 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     CONTACT_EMAIL: process.env.CONTACT_EMAIL,
     GOOGLE_APP_PASSWORD: process.env.GOOGLE_APP_PASSWORD,
+    HCAPTCHA_VERIFY_URL: process.env.HCAPTCHA_VERIFY_URL,
     HCAPTCHA_SECRET: process.env.HCAPTCHA_SECRET,
-    HCAPTCHA_SITEKEY: process.env.HCAPTCHA_SITEKEY,
+    NEXT_PUBLIC_HCAPTCHA_SITEKEY: process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY,
     NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },

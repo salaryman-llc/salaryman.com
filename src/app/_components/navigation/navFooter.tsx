@@ -1,5 +1,5 @@
-import { Link } from "../catalyst/link";
-import { navItems } from "../../navigationConstants";
+import { Link } from '../catalyst/link';
+import { navItems } from '../../navigationConstants';
 
 export default function NavFooter() {
   return (

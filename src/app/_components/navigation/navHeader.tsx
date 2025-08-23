@@ -1,33 +1,33 @@
-"use client";
+'use client';
 
-import { navItems, type NavItem } from "~/app/navigationConstants";
+import { navItems, type NavItem } from '~/app/navigationConstants';
 import {
   Navbar,
   NavbarDivider,
   NavbarItem,
   NavbarLabel,
   NavbarSection,
-} from "../catalyst/navbar";
-import Image from "next/image";
-import { Heading } from "../catalyst/heading";
+} from '../catalyst/navbar';
+import Image from 'next/image';
+import { Heading } from '../catalyst/heading';
 import {
   Dropdown,
   DropdownButton,
   DropdownItem,
   DropdownLabel,
   DropdownMenu,
-} from "../catalyst/dropdown";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { usePathname } from "next/navigation";
+} from '../catalyst/dropdown';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { usePathname } from 'next/navigation';
 
 function BuildNavBarItem(
   label: string,
   url: string,
   pathname: string,
-  subNav?: NavItem[],
+  subNav?: NavItem[]
 ) {
   const isCurrent: boolean = pathname === url;
-  if (url === "/") {
+  if (url === '/') {
     return (
       <div key={label}>
         <NavbarItem key={label} href={url} current={isCurrent}>
@@ -85,7 +85,7 @@ export function NavHeader() {
     <Navbar>
       <NavbarSection className="max-lg:hidden">
         {navItems.map(({ label, url, subNav }) =>
-          BuildNavBarItem(label, url, pathname, subNav),
+          BuildNavBarItem(label, url, pathname, subNav)
         )}
       </NavbarSection>
     </Navbar>
