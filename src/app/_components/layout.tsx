@@ -20,7 +20,7 @@ import { StackedLayout } from "./catalyst/stacked-layout";
 import Footer from "./footer";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { navItems, type NavItem } from "../constants";
+import { navItems, type NavItem } from "../navigationConstants";
 import {
   Dropdown,
   DropdownButton,
