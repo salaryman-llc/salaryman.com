@@ -9,6 +9,10 @@ export const env = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
     DATABASE_TOKEN: z.string(),
+    GOOGLE_APP_PASSWORD: z.string(),
+    HCAPTCHA_SECRET: z.string(),
+    HCAPTCHA_SITEKEY: z.string(),
+    CONTACT_EMAIL: z.string().email(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -34,6 +38,10 @@ export const env = createEnv({
     DATABASE_TOKEN: process.env.DATABASE_TOKEN,
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+    GOOGLE_APP_PASSWORD: process.env.GOOGLE_APP_PASSWORD,
+    HCAPTCHA_SECRET: process.env.HCAPTCHA_SECRET,
+    HCAPTCHA_SITEKEY: process.env.HCAPTCHA_SITEKEY,
     NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },

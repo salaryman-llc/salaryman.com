@@ -10,8 +10,8 @@ const gamesNavItems: NavItem[] = [
 ];
 
 const productsNavItems: NavItem[] = [
-  // { label: "All Products", url: "/products" },
-  // { label: "AI Translations", url: "/products/translations" },
+  { label: "All Products", url: "/products" },
+  { label: "AI Translations", url: "/products/translations" },
 ];
 
 const servicesNavItems: NavItem[] = [
@@ -27,6 +27,6 @@ export const navItems: NavItem[] = [
   { label: "Games", url: "/games", subNav: gamesNavItems },
   { label: "Products", url: "/products", subNav: productsNavItems },
   { label: "Services", url: "/services", subNav: servicesNavItems },
-  { label: "Blog", url: "/blog" },
+  // { label: "Blog", url: "/blog" },
   { label: "Contact", url: "/contact" },
 ];

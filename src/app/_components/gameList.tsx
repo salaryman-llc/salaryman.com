@@ -1,45 +1,5 @@
-type GameDetails = {
-  title: string;
-  href: string;
-  description: string;
-  releaseDate?: string;
-  status: string;
-  platforms: string;
-  engine: string;
-  credits?: {
-    name: string;
-    title: string;
-  }[];
-  steamLink?: string;
-  epicGamesStoreLink?: string;
-  itchIOLink?: string;
-};
+import { allGames } from "../games/gameDetails";
 
-const games: GameDetails[] = [
-  {
-    title: "Backcountry",
-    href: "/games/backcountry",
-    description:
-      "Backcountry is a mystery narrative adventure game with whimsical mythilogical elements. You play a park ranger sent to a neglected mountain range to help the ranger residing there, but when you arrive he is missing with only a backpack and clues to lead the way. You quickly discover that you're not the only occupant of this mountain.",
-    status: "In Development",
-    platforms: "Windows, MacOS, Linux",
-    engine: "Unreal Engine",
-    // credits: [
-    //   {
-    //     name: 'Robert Kennedy',
-    //     title: 'Developer',
-    //   },
-    //   {
-    //     name: 'Henry Haner',
-    //     title: 'Developer',
-    //   },
-    //   {
-    //     name: 'Leanne Lommers',
-    //     title: 'Artist',
-    //   }
-    // ]
-  },
-];
 
 export default function GameList() {
   return (
@@ -54,7 +14,7 @@ export default function GameList() {
           </p>
         </div>
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 dark:border-gray-700">
-          {games.map((game) => (
+          {allGames.map((game) => (
             <article
               key={game.title}
               className="flex max-w-xl flex-col items-start justify-between"
