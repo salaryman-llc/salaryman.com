@@ -7,6 +7,11 @@ import { StackedLayout } from './_components/catalyst/stacked-layout';
 import { NavHeader } from './_components/navigation/navHeader';
 import NavFooter from './_components/navigation/navFooter';
 import { NavSideBar } from './_components/navigation/navSideBar';
+import { Inter } from 'next/font/google'
+
+const interFont = Inter({
+  subsets: ['latin']
+});
 
 export const metadata: Metadata = {
   title: 'Salaryman',
@@ -18,7 +23,7 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={interFont.className}>
       <head>
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </head>
