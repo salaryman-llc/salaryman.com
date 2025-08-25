@@ -7,10 +7,10 @@ import { StackedLayout } from './_components/catalyst/stacked-layout';
 import { NavHeader } from './_components/navigation/navHeader';
 import NavFooter from './_components/navigation/navFooter';
 import { NavSideBar } from './_components/navigation/navSideBar';
-import { Inter } from 'next/font/google'
+import { Inter } from 'next/font/google';
 
 const interFont = Inter({
-  subsets: ['latin']
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
