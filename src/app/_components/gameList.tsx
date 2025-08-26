@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { allGames } from '../games/gameDetails';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { HeartIcon } from '@heroicons/react/20/solid';
 
 export default function GameList() {
   return (
@@ -11,7 +12,7 @@ export default function GameList() {
             Games by Salaryman
           </h2>
           <p className="mt-2 text-lg/8 text-gray-600 dark:text-gray-300">
-            {'Crafted with love <3'}
+            {'Crafted with love '} <HeartIcon className="inline size-5" />
           </p>
         </div>
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 dark:border-gray-700">
