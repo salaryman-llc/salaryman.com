@@ -10,8 +10,8 @@ const gamesNavItems: NavItem[] = [
 ];
 
 const productsNavItems: NavItem[] = [
-  { label: 'All Products', url: '/products' },
-  { label: 'AI Translations', url: '/products/translations' },
+  // { label: 'All Products', url: '/products' },
+  // { label: 'AI Translations', url: '/products/translations' },
 ];
 
 const servicesNavItems: NavItem[] = [
