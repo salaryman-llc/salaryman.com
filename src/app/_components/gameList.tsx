@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import { allGames } from '../games/gameDetails';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 export default function GameList() {
   return (
@@ -37,10 +39,10 @@ export default function GameList() {
 
               <div className="group relative grow">
                 <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
-                  <a href={game.href}>
-                    <span className="absolute inset-0" />
+                  <Link href={game.href}>
                     {game.title}
-                  </a>
+                    <ArrowRightIcon className="inline size-4" />
+                  </Link>
                 </h3>
                 <p className="mt-5 text-sm/6 text-gray-600 dark:text-gray-400">
                   {game.description}

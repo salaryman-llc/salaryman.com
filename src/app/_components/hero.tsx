@@ -72,12 +72,12 @@ export default function Hero() {
                 <dd className="mt-1 flex flex-auto flex-col text-base/7 text-gray-600 dark:text-gray-400">
                   <p className="flex-auto">{feature.description}</p>
                   <p className="mt-3">
-                    <a
+                    <Link
                       href={feature.href}
                       className="text-sm/6 font-semibold text-blue-500 hover:text-blue-400 dark:text-blue-300 dark:hover:text-blue-200"
                     >
                       {feature.linkLabel} <span aria-hidden="true">→</span>
-                    </a>
+                    </Link>
                   </p>
                 </dd>
               </div>
