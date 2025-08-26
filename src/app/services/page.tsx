@@ -1,10 +1,11 @@
 import {
   ArrowPathIcon,
-  HeartIcon,
   CodeBracketSquareIcon,
   PuzzlePieceIcon,
   ChatBubbleLeftRightIcon,
   ArrowRightIcon,
+  CpuChipIcon,
+  ArrowPathRoundedSquareIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
@@ -43,14 +44,14 @@ const features = [
     href: '/services/ai',
     description:
       'Integrate AI to automate workflows in your software. Game Engines, Web Applications, Custom Tools, we are here to help you be more productive.',
-    icon: ArrowPathIcon,
+    icon: CpuChipIcon,
   },
   {
     name: 'Automation',
     href: '/services/automation',
     description:
       'We can provide custom tooling to automate your workflows. We will work with you to understand your workflows and provide you with tools to save you time.',
-    icon: HeartIcon,
+    icon: ArrowPathRoundedSquareIcon,
   },
 ];
 
