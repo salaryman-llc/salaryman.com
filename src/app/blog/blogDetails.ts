@@ -1,4 +1,21 @@
-export const blogPostDetails = [
+
+export type BlogPostDetails = {
+  id: number;
+  title: string;
+  href: string;
+  description: string;
+  imageUrl: string;
+  date: string;
+  datetime: string;
+  category: { title: string },
+  author: {
+    name: string;
+    role: string;
+    imageUrl: string;
+  }
+}
+
+export const blogPostDetails: BlogPostDetails[] = [
   // {
   //   id: 1,
   //   title: 'Test Blog Post',
