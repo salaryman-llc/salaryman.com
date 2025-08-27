@@ -15,11 +15,11 @@ const productsNavItems: NavItem[] = [
 ];
 
 const servicesNavItems: NavItem[] = [
-  { label: 'All Services', url: '/services' },
-  { label: 'Game Engine Plugins', url: '/services/plugins' },
-  { label: 'Web Development', url: '/services/webdev' },
-  { label: 'AI Integration', url: '/services/ai' },
-  { label: 'Automation', url: '/services/automation' },
+  // { label: 'All Services', url: '/services' },
+  // { label: 'Game Engine Plugins', url: '/services/plugins' },
+  // { label: 'Web Development', url: '/services/webdev' },
+  // { label: 'AI Integration', url: '/services/ai' },
+  // { label: 'Automation', url: '/services/automation' },
 ];
 
 export const navItems: NavItem[] = [

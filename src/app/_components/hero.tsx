@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { Button } from './catalyst/button';
 import { Link } from './catalyst/link';
+import ContactButton from './contactButton';
 
 const features = [
   {
@@ -48,12 +49,7 @@ export default function Hero() {
             }
           </p>
           <div className="mt-6">
-            <Link href="/contact">
-              <Button className="hover:cursor-pointer" color="salaryman/orange">
-                <EnvelopeIcon />
-                <span>Contact Us</span>
-              </Button>
-            </Link>
+            <ContactButton />
           </div>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
