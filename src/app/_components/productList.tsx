@@ -39,20 +39,22 @@ export default function ProductList() {
                 </p>
               </div>
 
-              <div className="relative mt-4 flex items-center gap-x-4">
-                <div className="text-sm/6 text-gray-900 dark:text-white">
-                  <p className="font-semibold">Store Links</p>
-                  {product.storeLinks?.map((link) => (
-                    <div
-                      key={link.name}
-                      className="hover:text-gray-700 dark:hover:text-gray-300"
-                    >
-                      <Link href={link.href}>{link.name}</Link>
-                      <ArrowRightIcon className="ml-1 inline size-3" />
-                    </div>
-                  ))}
+              {product.storeLinks && (
+                <div className="relative mt-4 flex items-center gap-x-4">
+                  <div className="text-sm/6 text-gray-900 dark:text-white">
+                    <p className="font-semibold">Store Links</p>
+                    {product.storeLinks?.map((link) => (
+                      <div
+                        key={link.name}
+                        className="hover:text-gray-700 dark:hover:text-gray-300"
+                      >
+                        <Link href={link.href}>{link.name}</Link>
+                        <ArrowRightIcon className="ml-1 inline size-3" />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="relative mt-4 flex items-center gap-x-4">
                 <div className="text-sm/6">
