@@ -25,14 +25,6 @@ export default function ProductList() {
                 <p className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-800/60 dark:text-gray-300 dark:hover:bg-gray-800">
                   {product.status}
                 </p>
-                {product.releaseDate && (
-                  <time
-                    dateTime={product.releaseDate}
-                    className="text-gray-500 dark:text-gray-400"
-                  >
-                    {product.releaseDate}
-                  </time>
-                )}
                 <p className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-800/60 dark:text-gray-300 dark:hover:bg-gray-800">
                   {product.engines}
                 </p>

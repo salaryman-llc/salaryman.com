@@ -2,7 +2,6 @@ type ProductDetails = {
   title: string;
   href: string;
   description: string;
-  releaseDate?: string;
   status: string;
   platforms: string;
   engines: string;
